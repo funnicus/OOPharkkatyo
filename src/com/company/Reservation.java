@@ -1,22 +1,60 @@
 package com.company;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
-public interface Reservation {
+public class Reservation {
+    private ReservationTarget reservationTarget;
+    private Customer customer;
+    private int reservationNumber;
+    private LocalDateTime reservationStart;
+    private LocalDateTime reservationEnd;
 
-    ReservationTarget getReservationTarget();
-    void setReservationTarget(ReservationTarget reservationTarget);
 
-    Customer getCustomer();
-    void setCustomer(Customer customer);
+    public Reservation(ReservationTarget reservationTarget, Customer customer, int reservationNumber, LocalDateTime reservationStart, LocalDateTime reservationEnd) {
+        this.reservationTarget = reservationTarget;
+        this.customer = customer;
+        this.reservationNumber = reservationNumber;
+        this.reservationStart = reservationStart;
+        this.reservationEnd = reservationEnd;
+    }
 
-    int getReservationNumber();
-    void setReservationNumber(int number);
 
-    Date getStartDate();
-    void setStartDate(Date startDate);
+    public ReservationTarget getReservationTarget() {
+        return reservationTarget;
+    }
+    public void setReservationTarget(ReservationTarget reservationTarget) {
+        this.reservationTarget = reservationTarget;
+    }
 
-    Date getEndDate();
-    void setEndDate(Date endDate);
 
+    public Customer getCustomer() {
+        return customer;
+    }
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+
+    public int getReservationNumber() {
+        return reservationNumber;
+    }
+    public void setReservationNumber(int reservationNumber) {
+        this.reservationNumber = reservationNumber;
+    }
+
+
+    public LocalDateTime getReservationStart() {
+        return reservationStart;
+    }
+    public void setReservationStart(LocalDateTime reservationStart) {
+        this.reservationStart = reservationStart;
+    }
+
+
+    public LocalDateTime getReservationEnd() {
+        return reservationEnd;
+    }
+    public void setReservationEnd(LocalDateTime reservationEnd) {
+        this.reservationEnd = reservationEnd;
+    }
 }
