@@ -7,6 +7,10 @@ import com.company.ReservationTarget;
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
+import java.util.Date;
 
 public class ReservationEditWindow {
     private JFrame reservationEditWindow;
@@ -68,15 +72,29 @@ public class ReservationEditWindow {
         innerPanel.add(okButton);
         //OK BUTTON ACTIONS
         okButton.addActionListener(actionEvent -> {
+
             //change reservation details and hide window
             ReservationTarget target = currentReservation.getReservationTarget();
             target.setName(placeField.getText());
             target.setAddress(addrField.getText());
             target.setType("reservation");
-            if(targetList != null) {
-                targetList.addElement(currentReservation);
-                currentReservation = null;
-                reservationEditWindow.setVisible(false);
+
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm");
+                //TODO: parse correct times from user input
+                LocalDateTime parsedStartTime = LocalDateTime.now();
+                LocalDateTime parsedEndTime = LocalDateTime.now();
+                currentReservation.setReservationStart(parsedStartTime);
+                currentReservation.setReservationEnd(parsedEndTime);
+
+                if(targetList != null) {
+                    targetList.addElement(currentReservation);
+                    currentReservation = null;
+                    reservationEditWindow.setVisible(false);
+                }
+            } catch (DateTimeParseException exc) {
+                System.out.println(exc);
+                JOptionPane.showMessageDialog(null, "Please type the start and end times in this format:\nDD-MM-YYYY HH:MM");
             }
         });
 
@@ -96,17 +114,31 @@ public class ReservationEditWindow {
         if(visibleOnStart) reservationEditWindow.setVisible(true);
     }
 
-    public void setReservation(Reservation reservation, Customer customer) {
+    public void setReservationToEdit(Reservation reservation, Customer customer) {
+        //UPDATE TEXTFIELDS WITH CORRECT DATA
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm");
+
         if(reservation == null) {
-            //CREATE NEW RESERVATION
+            //CREATE NEW RESERVATION TARGET
             ReservationTarget newReservationTarget = new ReservationTarget("", "", "");
             currentReservation = new Reservation(newReservationTarget, customer, (int) (Math.random()*1000000), LocalDateTime.now(), LocalDateTime.now());
+
+            //SET DEFAULT VALUES
+            placeField.setText("");
+            addrField.setText("");
+            startDateField.setText(LocalDateTime.now().format(formatter));
+            endDateField.setText(LocalDateTime.now().format(formatter));
+
+        //IF EDITING AN EXISTING RESERVATION
         } else {
             currentReservation = reservation;
+
+            //Set values according to reservation details
+            placeField.setText(currentReservation.getReservationTarget().getName());
+            addrField.setText(currentReservation.getReservationTarget().getAddress());
+            startDateField.setText(currentReservation.getReservationStart().format(formatter));
+            endDateField.setText(currentReservation.getReservationEnd().format(formatter));
         }
-        //update frame data
-        placeField.setText(currentReservation.getReservationTarget().getName());
-        addrField.setText(currentReservation.getReservationTarget().getAddress());
     }
 
     public JLabel getReservationNameLabel() {

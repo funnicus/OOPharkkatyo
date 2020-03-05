@@ -64,6 +64,6 @@ public class Reservation {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm");
         String formattedStartTime = this.reservationStart.format(formatter);
         String formattedEndTime = this.reservationEnd.format(formatter);
-        return this.reservationTarget.getName() + " @ " + this.reservationTarget.getAddress() + "  |  from: " + formattedStartTime + " until " + formattedEndTime;
+        return this.reservationTarget.getName() + " @ " + this.reservationTarget.getAddress() + "  |  from: " + formattedStartTime + " until: " + formattedEndTime;
     }
 }

@@ -4,6 +4,7 @@ import com.company.UIWindows.ReservationEditWindow;
 import com.company.UIWindows.UserInfoWindow;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,31 +16,36 @@ public class UserInterface extends JFrame {
     public UserInterface() {
         //RESERVATION EDIT WINDOW
         ReservationEditWindow reservationEditWindow = new ReservationEditWindow(false);
-
+        //USER INFO WINDOW
         UserInfoWindow uiw = new UserInfoWindow(true);
 
+        //RESERVATION VIEW WINDOW SETTINGS
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Varausjärjestelmä - Juho Ollila, Juhana Kuparinen & Matias Kumpulainen");
-        setSize(400,500);
-        setVisible(true);
+        setLocationRelativeTo(null);
 
+        //CONTAINER
         Container cp = getContentPane();
-        JPanel mainPanel = new JPanel(new BorderLayout());
+        JPanel mainPanel = new JPanel(new FlowLayout());
         cp.add(mainPanel);
 
         //NEW RESERVATION BUTTON
         JButton newReservationButton = new JButton("New");
         newReservationButton.setSize(40, 20);
-        mainPanel.add(newReservationButton, BorderLayout.PAGE_START, 0);
+        mainPanel.add(newReservationButton);
         //NEW RESERVATION ACTIONS
         newReservationButton.addActionListener(actionEvent -> {
             reservationEditWindow.getFrame().setVisible(true);
-            reservationEditWindow.setReservation(null, currentCustomer);
+            reservationEditWindow.setReservationToEdit(null, currentCustomer);
         });
+
+        //DELETE RESERVATION BUTTON
+        JButton deleteReservationButton = new JButton("Delete");
+        deleteReservationButton.setSize(40, 20);
+        mainPanel.add(deleteReservationButton);
 
         //RESERVATION LIST MODEL
         DefaultListModel<Reservation> reservationList = new DefaultListModel<>();
-
         //GIVE REFERENCE OF LIST TO EDIT WINDOW
         reservationEditWindow.setTargetList(reservationList);
 
@@ -47,9 +53,18 @@ public class UserInterface extends JFrame {
         JList<Reservation> reservationListPane = new JList<>(reservationList);
         reservationListPane.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        //DELETE RESERVATION ACTIONS
+        deleteReservationButton.addActionListener(actionEvent -> {
+            int index = reservationListPane.getSelectedIndex();
+            if(index != -1) {
+                reservationList.remove(index);
+            }
+        });
+
         //SCROLL PANE
         JScrollPane scrollPane = new JScrollPane(reservationListPane);
-        mainPanel.add(scrollPane, BorderLayout.CENTER);
+        mainPanel.add(scrollPane);
+        pack();
 
         //USER INFO SUBMIT
         JButton userInfoSubmit = uiw.getUserInfoButton();
@@ -64,6 +79,8 @@ public class UserInterface extends JFrame {
             } else {
                 currentCustomer = new Customer(name, birthday, null);
                 uiw.getFrame().setVisible(false);
+                setVisible(true);
+                setTitle("Reservations for " + name);
             }
             //TODO: fetch from db using this data
         });
