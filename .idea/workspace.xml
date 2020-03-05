@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e88d83cc-8ebc-42a7-b638-29ed5ad6eea1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/company/UIWindows/ReservationEditWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/UIWindows/UserInfoWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_harkkatyo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_harkkatyo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Reservation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/UIWindows/ReservationEditWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/UIWindows/ReservationEditWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/UIWindows/UserInfoWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/UIWindows/UserInfoWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/UserInterface.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -50,7 +51,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
@@ -100,6 +101,7 @@
       <workItem from="1583155725286" duration="386000" />
       <workItem from="1583158677371" duration="313000" />
       <workItem from="1583411390260" duration="1654000" />
+      <workItem from="1583418735192" duration="6048000" />
     </task>
     <task id="LOCAL−00001" summary="Lisättiin rajapinnat:&#10;Asiakas&#10;Varaus&#10;Varauskohde">
       <created>1583157624796</created>

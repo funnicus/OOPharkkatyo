@@ -2,6 +2,7 @@ package com.company.UIWindows;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.*;
 import java.time.format.DateTimeParseException;
@@ -16,8 +17,9 @@ public class UserInfoWindow {
     public UserInfoWindow(boolean visibleOnStart) {
         //WINDOW
         userInfoWindow = new JFrame("user info");
-        userInfoWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        userInfoWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         userInfoWindow.setSize(400, 150);
+        userInfoWindow.setLocationRelativeTo(null);
         //PANEL
         JPanel innerPanel = new JPanel();
         userInfoWindow.add(innerPanel);
@@ -31,7 +33,7 @@ public class UserInfoWindow {
 
         //BIRTHDAY
         JLabel userBirthDateLabel = new JLabel("Birthday: (format: DD-MM-YYYY");
-        userBirthDateField = new JTextField();
+        userBirthDateField = new JTextField("04-03-1998");
         userBirthDateField.setPreferredSize(new Dimension(150, 20));
         innerPanel.add(userBirthDateLabel);
         innerPanel.add(userBirthDateField);
@@ -46,21 +48,17 @@ public class UserInfoWindow {
     public JFrame getFrame() {
         return userInfoWindow;
     }
-
-    public JButton getUserInfoSubmit() {
+    public JButton getUserInfoButton() {
         return userInfoSubmit;
     }
 
     public String getUserName() {
         return userNameField.getText();
     }
-
     public LocalDateTime getBirthDay() {
-        String birthdayStr = userBirthDateField.getText();
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-            LocalDateTime parsedDate = LocalDateTime.parse(birthdayStr, formatter);
-            return parsedDate;
+            LocalDate parsedBday = LocalDate.parse(userBirthDateField.getText(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            return parsedBday.atStartOfDay();
         } catch(DateTimeParseException e) {
             return null;
         }

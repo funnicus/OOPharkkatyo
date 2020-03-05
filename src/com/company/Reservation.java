@@ -1,6 +1,7 @@
 package com.company;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Reservation {
     private ReservationTarget reservationTarget;
@@ -56,5 +57,13 @@ public class Reservation {
     }
     public void setReservationEnd(LocalDateTime reservationEnd) {
         this.reservationEnd = reservationEnd;
+    }
+
+    @Override
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm");
+        String formattedStartTime = this.reservationStart.format(formatter);
+        String formattedEndTime = this.reservationEnd.format(formatter);
+        return this.reservationTarget.getName() + " @ " + this.reservationTarget.getAddress() + "  |  from: " + formattedStartTime + " until " + formattedEndTime;
     }
 }
