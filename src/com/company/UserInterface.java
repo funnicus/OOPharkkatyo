@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.Customer;
+import com.company.Reservation;
 import com.company.UIWindows.ReservationEditWindow;
 import com.company.UIWindows.UserInfoWindow;
 
@@ -22,7 +24,7 @@ public class UserInterface extends JFrame {
         //RESERVATION VIEW WINDOW SETTINGS
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Varausjärjestelmä - Juho Ollila, Juhana Kuparinen & Matias Kumpulainen");
-        setLocationRelativeTo(null);
+        setSize(650, 300);
 
         //CONTAINER
         Container cp = getContentPane();
@@ -39,6 +41,11 @@ public class UserInterface extends JFrame {
             reservationEditWindow.setReservationToEdit(null, currentCustomer);
         });
 
+        //EDIT RESERVATION BUTTON
+        JButton editReservationButton = new JButton("Edit");
+        editReservationButton.setSize(40, 20);
+        mainPanel.add(editReservationButton);
+
         //DELETE RESERVATION BUTTON
         JButton deleteReservationButton = new JButton("Delete");
         deleteReservationButton.setSize(40, 20);
@@ -52,6 +59,17 @@ public class UserInterface extends JFrame {
         //RESERVATION LIST PANE
         JList<Reservation> reservationListPane = new JList<>(reservationList);
         reservationListPane.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        reservationListPane.setPreferredSize(new Dimension(600, 200));
+
+        //NEW RESERVATION ACTIONS
+        editReservationButton.addActionListener(actionEvent -> {
+            int index = reservationListPane.getSelectedIndex();
+            if(index != -1) {
+                reservationEditWindow.getFrame().setVisible(true);
+                reservationEditWindow.setReservationToEdit(reservationList.getElementAt(index), currentCustomer);
+            }
+
+        });
 
         //DELETE RESERVATION ACTIONS
         deleteReservationButton.addActionListener(actionEvent -> {
@@ -63,8 +81,10 @@ public class UserInterface extends JFrame {
 
         //SCROLL PANE
         JScrollPane scrollPane = new JScrollPane(reservationListPane);
+        scrollPane.setPreferredSize(new Dimension(620, 220));
         mainPanel.add(scrollPane);
         pack();
+        setLocationRelativeTo(null);
 
         //USER INFO SUBMIT
         JButton userInfoSubmit = uiw.getUserInfoButton();

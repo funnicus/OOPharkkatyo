@@ -9,12 +9,9 @@ import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.format.ResolverStyle;
-import java.util.Date;
 
 public class ReservationEditWindow {
     private JFrame reservationEditWindow;
-    private JLabel reservationNameLabel;
     private Reservation currentReservation;
 
     private DefaultListModel targetList;
@@ -36,7 +33,7 @@ public class ReservationEditWindow {
 
         //CONTENTS
         //RESERVATION NAME LABEL
-        JLabel placeLabel = new JLabel("Reservation place: ");
+        JLabel placeLabel = new JLabel("Reservation name: ");
         innerPanel.add(placeLabel);
 
         //RESERVATION PLACE TEXTFIELD
@@ -80,15 +77,20 @@ public class ReservationEditWindow {
             target.setType("reservation");
 
             try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
                 //TODO: parse correct times from user input
-                LocalDateTime parsedStartTime = LocalDateTime.now();
-                LocalDateTime parsedEndTime = LocalDateTime.now();
+                LocalDateTime parsedStartTime = LocalDateTime.parse(startDateField.getText(), formatter);
+                LocalDateTime parsedEndTime = LocalDateTime.parse(endDateField.getText(), formatter);
                 currentReservation.setReservationStart(parsedStartTime);
                 currentReservation.setReservationEnd(parsedEndTime);
 
                 if(targetList != null) {
-                    targetList.addElement(currentReservation);
+                    int index = targetList.indexOf(currentReservation);
+                    if(index != -1) {
+                        targetList.setElementAt(currentReservation, index);
+                    } else {
+                        targetList.addElement(currentReservation);
+                    }
                     currentReservation = null;
                     reservationEditWindow.setVisible(false);
                 }
@@ -108,7 +110,6 @@ public class ReservationEditWindow {
             currentReservation = null;
             addrField.setText("");
             placeField.setText("");
-
         });
 
         if(visibleOnStart) reservationEditWindow.setVisible(true);
@@ -139,10 +140,6 @@ public class ReservationEditWindow {
             startDateField.setText(currentReservation.getReservationStart().format(formatter));
             endDateField.setText(currentReservation.getReservationEnd().format(formatter));
         }
-    }
-
-    public JLabel getReservationNameLabel() {
-        return reservationNameLabel;
     }
     public JFrame getFrame() {
         return reservationEditWindow;
