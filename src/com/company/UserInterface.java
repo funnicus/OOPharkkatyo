@@ -11,6 +11,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class UserInterface extends JFrame {
     private Customer currentCustomer;
@@ -67,6 +69,7 @@ public class UserInterface extends JFrame {
             if(index != -1) {
                 reservationEditWindow.getFrame().setVisible(true);
                 reservationEditWindow.setReservationToEdit(reservationList.getElementAt(index), currentCustomer);
+                //TODO: insert kysely
             }
 
         });
@@ -76,6 +79,7 @@ public class UserInterface extends JFrame {
             int index = reservationListPane.getSelectedIndex();
             if(index != -1) {
                 reservationList.remove(index);
+                //TODO: delete kysely
             }
         });
 
@@ -88,6 +92,7 @@ public class UserInterface extends JFrame {
 
         //USER INFO SUBMIT
         JButton userInfoSubmit = uiw.getUserInfoButton();
+
         //USER INFO ACTIONS
         userInfoSubmit.addActionListener(actionEvent -> {
 
@@ -101,8 +106,51 @@ public class UserInterface extends JFrame {
                 uiw.getFrame().setVisible(false);
                 setVisible(true);
                 setTitle("Reservations for " + name);
+                //TODO: select kysely
+
             }
-            //TODO: fetch from db using this data
+        });
+
+        //RESERVATION EDIT SUBMIT
+        JButton editOkButton = reservationEditWindow.getOkButton();
+        //EDIT SUBMISSION ACTION
+        editOkButton.addActionListener(e -> {
+            Reservation reservation = reservationEditWindow.getCurrentReservation();
+
+            ReservationTarget reservationTarget = reservation.getReservationTarget();
+
+            reservationTarget.setName(reservationEditWindow.getName());
+            reservationTarget.setAddress(reservationEditWindow.getAddress());
+            reservationTarget.setType("reservation");
+
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
+                LocalDateTime parsedStartTime = reservationEditWindow.getStartDate();
+                LocalDateTime parsedEndTime = reservationEditWindow.getEndDate();
+
+                reservation.setReservationStart(parsedStartTime);
+                reservation.setReservationEnd(parsedEndTime);
+
+                int index = reservationList.indexOf(reservation);
+
+                //NEW RESERVATION
+                if(index == -1) {
+                    reservationList.addElement(reservation);
+                } else {
+                    reservationList.setElementAt(reservation, index);
+                }
+
+                reservationEditWindow.getFrame().setVisible(false);
+                reservationEditWindow.resetForm();
+                //TODO: update kysely
+
+            } catch(DateTimeParseException timeException) {
+                System.out.println(timeException);
+                JOptionPane.showMessageDialog(null, "Please type the start and end times in this format:\nDD-MM-YYYY HH:MM");
+            }
+
+
         });
     }
 }

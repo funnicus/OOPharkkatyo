@@ -17,6 +17,7 @@ public class ReservationEditWindow {
     private DefaultListModel targetList;
 
     private JTextField placeField, addrField, startDateField, endDateField;
+    private JButton okButton;
 
     public ReservationEditWindow(boolean visibleOnStart) {
         //WINDOW
@@ -36,7 +37,7 @@ public class ReservationEditWindow {
         JLabel placeLabel = new JLabel("Reservation name: ");
         innerPanel.add(placeLabel);
 
-        //RESERVATION PLACE TEXTFIELD
+        //RESERVATION NAME TEXTFIELD
         placeField = new JTextField();
         innerPanel.add(placeField);
 
@@ -65,11 +66,11 @@ public class ReservationEditWindow {
         innerPanel.add(endDateField);
 
         //OK BUTTON
-        JButton okButton = new JButton("Ok");
+        okButton = new JButton("Ok");
         innerPanel.add(okButton);
         //OK BUTTON ACTIONS
         okButton.addActionListener(actionEvent -> {
-
+            /*
             //change reservation details and hide window
             ReservationTarget target = currentReservation.getReservationTarget();
             target.setName(placeField.getText());
@@ -78,7 +79,7 @@ public class ReservationEditWindow {
 
             try {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-                //TODO: parse correct times from user input
+
                 LocalDateTime parsedStartTime = LocalDateTime.parse(startDateField.getText(), formatter);
                 LocalDateTime parsedEndTime = LocalDateTime.parse(endDateField.getText(), formatter);
                 currentReservation.setReservationStart(parsedStartTime);
@@ -98,8 +99,8 @@ public class ReservationEditWindow {
                 System.out.println(exc);
                 JOptionPane.showMessageDialog(null, "Please type the start and end times in this format:\nDD-MM-YYYY HH:MM");
             }
+            */
         });
-
         //CANCEL BUTTON
         JButton cancelButton = new JButton("Cancel");
         innerPanel.add(cancelButton);
@@ -141,8 +142,33 @@ public class ReservationEditWindow {
             endDateField.setText(currentReservation.getReservationEnd().format(formatter));
         }
     }
-    public JFrame getFrame() {
-        return reservationEditWindow;
+    public Reservation getCurrentReservation() { return currentReservation; }
+    public void resetForm() {
+        placeField.setText("");
+        addrField.setText("");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm");
+        startDateField.setText(LocalDateTime.now().format(formatter));
+        endDateField.setText(LocalDateTime.now().format(formatter));
+    }
+    public JFrame getFrame() { return reservationEditWindow; }
+    public JButton getOkButton() { return okButton; }
+
+    public String getName() { return placeField.getText(); }
+    public String getAddress() { return addrField.getText(); }
+    public LocalDateTime getStartDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
+        LocalDateTime parsedStartTime = LocalDateTime.parse(startDateField.getText(), formatter);
+
+        return parsedStartTime;
+    }
+    public LocalDateTime getEndDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
+        LocalDateTime parsedEndTime = LocalDateTime.parse(endDateField.getText(), formatter);
+
+        return parsedEndTime;
     }
 
     public void setTargetList(DefaultListModel target) {

@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e88d83cc-8ebc-42a7-b638-29ed5ad6eea1" name="Default Changelist" comment="Lisättiin">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="e88d83cc-8ebc-42a7-b638-29ed5ad6eea1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/UIWindows/ReservationEditWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/UIWindows/ReservationEditWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/UserInterface.java" afterDir="false" />
     </list>
@@ -102,6 +99,9 @@
       <workItem from="1583411390260" duration="1654000" />
       <workItem from="1583418735192" duration="9440000" />
       <workItem from="1583697128279" duration="539000" />
+      <workItem from="1583748767219" duration="299000" />
+      <workItem from="1583755620514" duration="2411000" />
+      <workItem from="1583765729524" duration="53000" />
     </task>
     <task id="LOCAL−00001" summary="Lisättiin rajapinnat:&#10;Asiakas&#10;Varaus&#10;Varauskohde">
       <created>1583157624796</created>
@@ -116,7 +116,13 @@
       <option name="project" value="LOCAL" />
       <updated>1583424860014</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL−00003" summary="Lisättiin varauksen muokkaus">
+      <created>1583748922913</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1583748922913</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,7 +144,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Lisättiin rajapinnat:&#10;Asiakas&#10;Varaus&#10;Varauskohde" />
     <MESSAGE value="Lisättiin toiminnallisuudet:&#10;-Uusia varauksia voi nyt lisätä&#10;-Uudet varaukset näkyvät listassa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lisättiin toiminnallisuudet:&#10;-Uusia varauksia voi nyt lisätä&#10;-Uudet varaukset näkyvät listassa" />
+    <MESSAGE value="Lisättiin varauksen muokkaus" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lisättiin varauksen muokkaus" />
   </component>
   <component name="WindowStateProjectService">
     <state x="473" y="155" key="FileChooserDialogImpl" />
