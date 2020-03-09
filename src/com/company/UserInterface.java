@@ -27,6 +27,7 @@ public class UserInterface extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Varausjärjestelmä - Juho Ollila, Juhana Kuparinen & Matias Kumpulainen");
         setSize(650, 300);
+        setResizable(false);
 
         //CONTAINER
         Container cp = getContentPane();
