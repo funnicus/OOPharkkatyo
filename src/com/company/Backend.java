@@ -27,8 +27,26 @@ public class Backend {
         return conn;
     }
 
-    public void createReservation(){
+    public void createReservation(int id,
+                                  String customer_id,
+                                  String place,
+                                  String address,
+                                  String start_date,
+                                  String end_date){
+        String sql = "INSERT INTO reservations(id, customer_id, place, address, start_date, end_date) VALUES(?,?,?,?,?,?)";
 
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            pstmt.setString(2, customer_id);
+            pstmt.setString(3, place);
+            pstmt.setString(4, address);
+            pstmt.setString(5, start_date);
+            pstmt.setString(6, end_date);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
     /**
      * Luodaan uusi taulukko
