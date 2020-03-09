@@ -20,29 +20,31 @@ public class UserInfoWindow {
         userInfoWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         userInfoWindow.setSize(400, 150);
         userInfoWindow.setLocationRelativeTo(null);
+        if(visibleOnStart) userInfoWindow.setVisible(true);
+
         //PANEL
         JPanel innerPanel = new JPanel();
-        userInfoWindow.add(innerPanel);
 
         //NAME
         JLabel userNameLabel = new JLabel("Name:");
         userNameField = new JTextField();
         userNameField.setPreferredSize(new Dimension(200, 20));
-        innerPanel.add(userNameLabel);
-        innerPanel.add(userNameField);
 
         //BIRTHDAY
         JLabel userBirthDateLabel = new JLabel("Birthday: (format: DD-MM-YYYY");
         userBirthDateField = new JTextField("04-03-1998");
         userBirthDateField.setPreferredSize(new Dimension(150, 20));
-        innerPanel.add(userBirthDateLabel);
-        innerPanel.add(userBirthDateField);
 
         //SUBMIT
         userInfoSubmit = new JButton("Show reservations");
-        innerPanel.add(userInfoSubmit);
 
-        if(visibleOnStart) userInfoWindow.setVisible(true);
+        //ADD COMPONENTS
+        userInfoWindow.add(innerPanel);
+        innerPanel.add(userNameLabel);
+        innerPanel.add(userNameField);
+        innerPanel.add(userBirthDateLabel);
+        innerPanel.add(userBirthDateField);
+        innerPanel.add(userInfoSubmit);
     }
 
     public JFrame getFrame() {

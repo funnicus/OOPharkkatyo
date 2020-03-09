@@ -1,15 +1,10 @@
 package com.company;
 
-import com.company.Customer;
-import com.company.Reservation;
 import com.company.UIWindows.ReservationEditWindow;
 import com.company.UIWindows.UserInfoWindow;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -17,11 +12,15 @@ import java.time.format.DateTimeParseException;
 public class UserInterface extends JFrame {
     private Customer currentCustomer;
 
+    private JList<Reservation> reservationListPane;
+    private DefaultListModel<Reservation> reservationList;
+
+    private ReservationEditWindow reservationEditWindow;
+    private UserInfoWindow userInfoWindow;
+
     public UserInterface() {
-        //RESERVATION EDIT WINDOW
-        ReservationEditWindow reservationEditWindow = new ReservationEditWindow(false);
-        //USER INFO WINDOW
-        UserInfoWindow uiw = new UserInfoWindow(true);
+        reservationEditWindow = new ReservationEditWindow(false);
+        userInfoWindow = new UserInfoWindow(true);
 
         //RESERVATION VIEW WINDOW SETTINGS
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,85 +31,36 @@ public class UserInterface extends JFrame {
         //CONTAINER
         Container cp = getContentPane();
         JPanel mainPanel = new JPanel(new FlowLayout());
-        cp.add(mainPanel);
 
         //NEW RESERVATION BUTTON
         JButton newReservationButton = new JButton("New");
         newReservationButton.setSize(40, 20);
-        mainPanel.add(newReservationButton);
-        //NEW RESERVATION ACTIONS
-        newReservationButton.addActionListener(actionEvent -> {
-            reservationEditWindow.getFrame().setVisible(true);
-            reservationEditWindow.setReservationToEdit(null, currentCustomer);
-        });
+        newReservationButton.addActionListener(actionEvent -> openEditWindow());
 
         //EDIT RESERVATION BUTTON
         JButton editReservationButton = new JButton("Edit");
         editReservationButton.setSize(40, 20);
-        mainPanel.add(editReservationButton);
+        editReservationButton.addActionListener(actionEvent -> newReservation());
 
         //DELETE RESERVATION BUTTON
         JButton deleteReservationButton = new JButton("Delete");
         deleteReservationButton.setSize(40, 20);
-        mainPanel.add(deleteReservationButton);
+        deleteReservationButton.addActionListener(actionEvent -> deleteReservation());
 
         //RESERVATION LIST MODEL
-        DefaultListModel<Reservation> reservationList = new DefaultListModel<>();
-        //GIVE REFERENCE OF LIST TO EDIT WINDOW
-        reservationEditWindow.setTargetList(reservationList);
-
+        reservationList = new DefaultListModel<>();
         //RESERVATION LIST PANE
-        JList<Reservation> reservationListPane = new JList<>(reservationList);
+        reservationListPane = new JList<>(reservationList);
         reservationListPane.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         reservationListPane.setPreferredSize(new Dimension(600, 200));
-
-        //NEW RESERVATION ACTIONS
-        editReservationButton.addActionListener(actionEvent -> {
-            int index = reservationListPane.getSelectedIndex();
-            if(index != -1) {
-                reservationEditWindow.getFrame().setVisible(true);
-                reservationEditWindow.setReservationToEdit(reservationList.getElementAt(index), currentCustomer);
-                //TODO: insert kysely
-            }
-
-        });
-
-        //DELETE RESERVATION ACTIONS
-        deleteReservationButton.addActionListener(actionEvent -> {
-            int index = reservationListPane.getSelectedIndex();
-            if(index != -1) {
-                reservationList.remove(index);
-                //TODO: delete kysely
-            }
-        });
 
         //SCROLL PANE
         JScrollPane scrollPane = new JScrollPane(reservationListPane);
         scrollPane.setPreferredSize(new Dimension(620, 220));
-        mainPanel.add(scrollPane);
-        pack();
-        setLocationRelativeTo(null);
 
         //USER INFO SUBMIT
-        JButton userInfoSubmit = uiw.getUserInfoButton();
-
-        //USER INFO ACTIONS
-        userInfoSubmit.addActionListener(actionEvent -> {
-
-            String name = uiw.getUserName();
-            LocalDateTime birthday = uiw.getBirthDay();
-
-            if(birthday == null) {
-                JOptionPane.showMessageDialog(null, "Please type the date in this format:\nDD-MM-YYYY");
-            } else {
-                currentCustomer = new Customer(name, birthday, null);
-                uiw.getFrame().setVisible(false);
-                setVisible(true);
-                setTitle("Reservations for " + name);
-                //TODO: select kysely
-
-            }
-        });
+        JButton userInfoSubmit = userInfoWindow.getUserInfoButton();
+        userInfoSubmit.addActionListener(actionEvent -> showReservations());
 
         //RESERVATION EDIT SUBMIT
         JButton editOkButton = reservationEditWindow.getOkButton();
@@ -150,8 +100,49 @@ public class UserInterface extends JFrame {
                 System.out.println(timeException);
                 JOptionPane.showMessageDialog(null, "Please type the start and end times in this format:\nDD-MM-YYYY HH:MM");
             }
-
-
         });
+
+        //ADD COMPONENTS
+        cp.add(mainPanel);
+        mainPanel.add(newReservationButton);
+        mainPanel.add(editReservationButton);
+        mainPanel.add(deleteReservationButton);
+        mainPanel.add(scrollPane);
+        pack();
+        setLocationRelativeTo(null);
+    }
+
+    private void openEditWindow() {
+        reservationEditWindow.getFrame().setVisible(true);
+        reservationEditWindow.setReservationToEdit(null, currentCustomer);
+    }
+    private void showReservations() {
+        String name = userInfoWindow.getUserName();
+        LocalDateTime birthday = userInfoWindow.getBirthDay();
+
+        if(birthday == null) {
+            JOptionPane.showMessageDialog(null, "Please type the date in this format:\nDD-MM-YYYY");
+        } else {
+            currentCustomer = new Customer(name, birthday, null);
+            userInfoWindow.getFrame().setVisible(false);
+            setVisible(true);
+            setTitle("Reservations for " + name);
+            //TODO: select kysely
+        }
+    }
+    private void newReservation() {
+        int index = reservationListPane.getSelectedIndex();
+        if(index != -1) {
+            reservationEditWindow.getFrame().setVisible(true);
+            reservationEditWindow.setReservationToEdit(reservationList.getElementAt(index), currentCustomer);
+            //TODO: insert kysely
+        }
+    }
+    private void deleteReservation() {
+        int index = reservationListPane.getSelectedIndex();
+        if(index != -1) {
+            reservationList.remove(index);
+            //TODO: delete kysely
+        }
     }
 }
