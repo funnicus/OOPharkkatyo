@@ -26,7 +26,7 @@ public class UserInterface extends JFrame {
         //RESERVATION VIEW WINDOW SETTINGS
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Varausjärjestelmä - Juho Ollila, Juhana Kuparinen & Matias Kumpulainen");
-        setSize(650, 300);
+        setSize(520, 300);
         setResizable(false);
 
         //CONTAINER
@@ -66,52 +66,7 @@ public class UserInterface extends JFrame {
         //RESERVATION EDIT SUBMIT
         JButton editOkButton = reservationEditWindow.getOkButton();
         //EDIT SUBMISSION ACTION
-        editOkButton.addActionListener(e -> {
-            Reservation reservation = reservationEditWindow.getCurrentReservation();
-
-            ReservationTarget reservationTarget = reservation.getReservationTarget();
-
-            reservationTarget.setName(reservationEditWindow.getName());
-            reservationTarget.setAddress(reservationEditWindow.getAddress());
-            reservationTarget.setType("reservation");
-
-            try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-
-                LocalDateTime parsedStartTime = reservationEditWindow.getStartDate();
-                LocalDateTime parsedEndTime = reservationEditWindow.getEndDate();
-
-                reservation.setReservationStart(parsedStartTime);
-                reservation.setReservationEnd(parsedEndTime);
-
-                int index = reservationList.indexOf(reservation);
-
-                String place = reservation.getReservationTarget().getName();
-                String address = reservation.getReservationTarget().getAddress();
-                String startTime = parsedStartTime.format(formatter);
-                String endTime = parsedEndTime.format(formatter);
-
-                if(index == -1) {
-                    //NEW RESERVATION
-                    reservationList.addElement(reservation);
-
-                    backend.createReservation(reservation.getId(), currentCustomer.getId(), place, address, startTime, endTime);
-                } else {
-                    //EXISTING RESERVATIONS
-                    reservationList.setElementAt(reservation, index);
-
-                    backend.updateReservation(reservation.getId(), currentCustomer.getId(), place, address, startTime, endTime);
-                }
-
-                reservationEditWindow.getFrame().setVisible(false);
-                reservationEditWindow.resetForm();
-                //TODO: update kysely
-
-            } catch(DateTimeParseException timeException) {
-                System.out.println(timeException);
-                JOptionPane.showMessageDialog(null, "Please type the start and end times in this format:\nDD-MM-YYYY HH:MM");
-            }
-        });
+        editOkButton.addActionListener(e -> updateReservations());
 
         //ADD COMPONENTS
         cp.add(mainPanel);
@@ -123,6 +78,52 @@ public class UserInterface extends JFrame {
         setLocationRelativeTo(null);
     }
 
+    private void updateReservations() {
+        Reservation reservation = reservationEditWindow.getCurrentReservation();
+
+        ReservationTarget reservationTarget = reservation.getReservationTarget();
+
+        reservationTarget.setName(reservationEditWindow.getName());
+        reservationTarget.setAddress(reservationEditWindow.getAddress());
+        reservationTarget.setType("reservation");
+
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
+            LocalDateTime parsedStartTime = reservationEditWindow.getStartDate();
+            LocalDateTime parsedEndTime = reservationEditWindow.getEndDate();
+
+            reservation.setReservationStart(parsedStartTime);
+            reservation.setReservationEnd(parsedEndTime);
+
+            int index = reservationList.indexOf(reservation);
+
+            String place = reservation.getReservationTarget().getName();
+            String address = reservation.getReservationTarget().getAddress();
+            String startTime = parsedStartTime.format(formatter);
+            String endTime = parsedEndTime.format(formatter);
+
+            if(index == -1) {
+                //NEW RESERVATION
+                reservationList.addElement(reservation);
+
+                backend.createReservation(reservation.getId(), currentCustomer.getId(), place, address, startTime, endTime);
+            } else {
+                //EXISTING RESERVATIONS
+                reservationList.setElementAt(reservation, index);
+
+                backend.updateReservation(reservation.getId(), currentCustomer.getId(), place, address, startTime, endTime);
+            }
+
+            reservationEditWindow.getFrame().setVisible(false);
+            reservationEditWindow.resetForm();
+            //TODO: update kysely
+
+        } catch(DateTimeParseException timeException) {
+            System.out.println(timeException);
+            JOptionPane.showMessageDialog(null, "Please type the start and end times in this format:\nDD-MM-YYYY HH:MM");
+        }
+    }
     private void newReservation() {
         reservationEditWindow.getFrame().setVisible(true);
         reservationEditWindow.setReservationToEdit(null, currentCustomer);
@@ -153,14 +154,14 @@ public class UserInterface extends JFrame {
         if(index != -1) {
             reservationEditWindow.getFrame().setVisible(true);
             reservationEditWindow.setReservationToEdit(reservationList.getElementAt(index), currentCustomer);
-            //TODO: insert kysely
         }
     }
     private void deleteReservation() {
         int index = reservationListPane.getSelectedIndex();
+        Reservation reservation =  reservationList.elementAt(index);
         if(index != -1) {
             reservationList.remove(index);
-            //TODO: delete kysely
+            backend.deleteReservation(reservation.getId());
         }
     }
 }
