@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Customer {
+public class Customer{
     private String name;
     private LocalDateTime birthday;
     private ArrayList<Reservation> reservations;
