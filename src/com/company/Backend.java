@@ -116,6 +116,26 @@ public class Backend {
             System.out.println(e.getMessage());
         }
     }
+
+    /**
+     * Poistetaan varaus tällä metodilla.
+     * @param id
+     */
+    public void deleteReservation(String id) {
+        String sql = "DELETE FROM reservations WHERE id = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setString(1, id);
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     /**
      * Tulostetaan kaikki asiakkaat
      */

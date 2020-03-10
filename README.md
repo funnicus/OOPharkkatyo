@@ -1,2 +1,3 @@
-# OOP_harkkaty-
-OOP harkkatyö.
+# OOP harjoitustyö
+
+OOP harkkatyömme koodi. Koska git ei jostain syystä suostu tallentamaan tänne kansiota "libs", jonka sisältä löytyy projektin tietokannan ajuri, on sinun tehtävä tämä kansio itse. Kun olet ladannut projektin tiedostot tietokoneellesi, luo kansio "libs" projektin juureen ja lataa sen sisälle "sqlite-jdbc-3.27.2.1.jar". Kyseisen ajurin voitte löytää esimerkiksi osoitteesta https://bitbucket.org/xerial/sqlite-jdbc/downloads/.

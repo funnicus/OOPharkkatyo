@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e88d83cc-8ebc-42a7-b638-29ed5ad6eea1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/harkkatyodb.db" beforeDir="false" afterPath="$PROJECT_DIR$/database/harkkatyodb.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Backend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Backend.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Reservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UIWindows/ReservationEditWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/UIWindows/ReservationEditWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,18 +60,6 @@
       <recent name="C:\Users\juhku\Programs\OOP\OOPharkkatyo\libs" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.company.Main" />
@@ -108,6 +93,7 @@
       <workItem from="1583418735192" duration="9440000" />
       <workItem from="1583697128279" duration="539000" />
       <workItem from="1583762972989" duration="12680000" />
+      <workItem from="1583858771751" duration="691000" />
     </task>
     <task id="LOCAL−00001" summary="Lisättiin rajapinnat:&#10;Asiakas&#10;Varaus&#10;Varauskohde">
       <created>1583157624796</created>
