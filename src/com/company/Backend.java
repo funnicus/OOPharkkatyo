@@ -3,7 +3,7 @@ import java.math.BigInteger;
 import java.sql.*;
 
 public class Backend {
-    private final String url = "jdbc:sqlite:C:/Users/juhku/Programs/OOP/OOPharkkatyo/database/harkkatyodb.db";
+    private final String url = "jdbc:sqlite:database/harkkatyodb.db";
 
     public Connection connect(){
         Connection conn = null;
@@ -14,19 +14,41 @@ public class Backend {
         catch (SQLException e){
             System.out.println(e.getMessage());
         }
-        finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            }
-            catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
+        //System.out.println(conn);
         return conn;
     }
 
+    /**
+     * Creating a customer
+     * @param id
+     * @param name
+     * @param date_of_birth
+     */
+    public void createCustomer(String id,
+                                  String name,
+                                  String date_of_birth){
+        String sql = "INSERT INTO customer(id, name, date_of_birth) VALUES(?,?,?)";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, id);
+            pstmt.setString(2, name);
+            pstmt.setString(3, date_of_birth);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Creating a new reservation
+     * @param id
+     * @param customer_id
+     * @param place
+     * @param address
+     * @param start_date
+     * @param end_date
+     */
     public void createReservation(int id,
                                   String customer_id,
                                   String place,
@@ -48,8 +70,53 @@ public class Backend {
             System.out.println(e.getMessage());
         }
     }
+
+    public void selectCustomer(){
+        String sql = "SELECT * FROM customer;";
+
+        try (Connection conn = this.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)){
+            System.out.println(conn);
+            System.out.println(rs);
+            // loop through the result set
+            while (rs.next()) {
+                System.out.println(rs.getString("id"));
+                System.out.println(rs.getString("name"));
+                System.out.println(rs.getString("date_of_birth"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Jokin meni pieleen...");
+            System.out.println(e);
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void selectReservation(){
+        String sql = "SELECT * FROM reservations;";
+
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+
+            // loop through the result set
+            while (rs.next()) {
+                System.out.println("hmmm");
+                System.out.println(rs.getInt("id"));
+                System.out.println(rs.getString("customer_id"));
+                System.out.println(rs.getString("place"));
+                System.out.println(rs.getString("address"));
+                System.out.println(rs.getString("start_date"));
+                System.out.println(rs.getString("end_date"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     /**
      * Luodaan uusi taulukko
+     * Tämä metodi oli tarpeellinen vain harkkatyön alussa...
      */
 
     public void createNewTable() {
