@@ -8,16 +8,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public class ReservationEditWindow {
     private JFrame reservationEditWindow;
     private Reservation currentReservation;
 
-    private DefaultListModel targetList;
-
     private JTextField placeField, addrField, startDateField, endDateField;
-    private JButton okButton;
+    private JButton okButton, cancelButton;
 
     public ReservationEditWindow(boolean visibleOnStart) {
         //WINDOW
@@ -26,94 +23,55 @@ public class ReservationEditWindow {
         reservationEditWindow.setSize(340, 300);
         reservationEditWindow.setResizable(false);
         reservationEditWindow.setLocationRelativeTo(null);
+        if(visibleOnStart) reservationEditWindow.setVisible(true);
 
         //PANEL
         JPanel innerPanel = new JPanel();
         innerPanel.setLayout(new GridLayout(5,4));
-        reservationEditWindow.add(innerPanel);
 
-        //CONTENTS
-        //RESERVATION NAME LABEL
+        //RESERVATION NAME
         JLabel placeLabel = new JLabel("Reservation name: ");
-        innerPanel.add(placeLabel);
-
-        //RESERVATION NAME TEXTFIELD
         placeField = new JTextField();
-        innerPanel.add(placeField);
 
-        //RESERVATION ADDRESS LABEL
+        //RESERVATION ADDRESS
         JLabel reservationAddrLabel = new JLabel("Address: ");
-        innerPanel.add(reservationAddrLabel);
-
-        //RESERVATION ADDRESS TEXTFIELD
         addrField = new JTextField();
-        innerPanel.add(addrField);
 
-        //RESERVATION NAME LABEL
+        //RESERVATION START DATE
         JLabel startDateLabel = new JLabel("Start time and date: ");
-        innerPanel.add(startDateLabel);
-
-        //RESERVATION START DATE TEXTFIELD
         startDateField = new JTextField();
-        innerPanel.add(startDateField);
 
         //RESERVATION NAME LABEL
         JLabel endDateLabel = new JLabel("End time and date: ");
-        innerPanel.add(endDateLabel);
-
-        //RESERVATION END DATE TEXTFIELD
         endDateField = new JTextField();
-        innerPanel.add(endDateField);
 
         //OK BUTTON
         okButton = new JButton("Ok");
-        innerPanel.add(okButton);
-        //OK BUTTON ACTIONS
-        okButton.addActionListener(actionEvent -> {
-            /*
-            //change reservation details and hide window
-            ReservationTarget target = currentReservation.getReservationTarget();
-            target.setName(placeField.getText());
-            target.setAddress(addrField.getText());
-            target.setType("reservation");
-
-            try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-
-                LocalDateTime parsedStartTime = LocalDateTime.parse(startDateField.getText(), formatter);
-                LocalDateTime parsedEndTime = LocalDateTime.parse(endDateField.getText(), formatter);
-                currentReservation.setReservationStart(parsedStartTime);
-                currentReservation.setReservationEnd(parsedEndTime);
-
-                if(targetList != null) {
-                    int index = targetList.indexOf(currentReservation);
-                    if(index != -1) {
-                        targetList.setElementAt(currentReservation, index);
-                    } else {
-                        targetList.addElement(currentReservation);
-                    }
-                    currentReservation = null;
-                    reservationEditWindow.setVisible(false);
-                }
-            } catch (DateTimeParseException exc) {
-                System.out.println(exc);
-                JOptionPane.showMessageDialog(null, "Please type the start and end times in this format:\nDD-MM-YYYY HH:MM");
-            }
-            */
-        });
         //CANCEL BUTTON
-        JButton cancelButton = new JButton("Cancel");
-        innerPanel.add(cancelButton);
+        cancelButton = new JButton("Cancel");
         //CANCEL BUTTON ACTIONS
-        cancelButton.addActionListener(actionEvent -> {
-            //discard changes and hide window
-            reservationEditWindow.setVisible(false);
-            currentReservation = null;
-            addrField.setText("");
-            placeField.setText("");
-        });
+        cancelButton.addActionListener(actionEvent -> resetWindow());
 
-        if(visibleOnStart) reservationEditWindow.setVisible(true);
+        //ADD COMPONENTS
+        reservationEditWindow.add(innerPanel);
+        innerPanel.add(placeLabel);
+        innerPanel.add(placeField);
+        innerPanel.add(reservationAddrLabel);
+        innerPanel.add(addrField);
+        innerPanel.add(startDateLabel);
+        innerPanel.add(startDateField);
+        innerPanel.add(endDateLabel);
+        innerPanel.add(endDateField);
+        innerPanel.add(okButton);
+        innerPanel.add(cancelButton);
+    }
+
+    private void resetWindow() {
+        //discard changes and hide window
+        reservationEditWindow.setVisible(false);
+        currentReservation = null;
+        addrField.setText("");
+        placeField.setText("");
     }
 
     public void setReservationToEdit(Reservation reservation, Customer customer) {
@@ -153,25 +111,16 @@ public class ReservationEditWindow {
     }
     public JFrame getFrame() { return reservationEditWindow; }
     public JButton getOkButton() { return okButton; }
+    public JButton getCancelButton() { return cancelButton; }
 
     public String getName() { return placeField.getText(); }
     public String getAddress() { return addrField.getText(); }
     public LocalDateTime getStartDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-
-        LocalDateTime parsedStartTime = LocalDateTime.parse(startDateField.getText(), formatter);
-
-        return parsedStartTime;
+        return LocalDateTime.parse(startDateField.getText(), formatter);
     }
     public LocalDateTime getEndDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-
-        LocalDateTime parsedEndTime = LocalDateTime.parse(endDateField.getText(), formatter);
-
-        return parsedEndTime;
-    }
-
-    public void setTargetList(DefaultListModel target) {
-        this.targetList = target;
+        return LocalDateTime.parse(endDateField.getText(), formatter);
     }
 }

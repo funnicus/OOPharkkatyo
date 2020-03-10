@@ -3,7 +3,6 @@ package com.company;
 import javax.swing.*;
 
 public class Main {
-
     public static void main(String[] args) {
 	    //Backend backend = new Backend();
 	    //id, customer_id, place, address, start_date, end_date
@@ -12,11 +11,6 @@ public class Main {
         //backend.selectCustomer();
         //backend.selectReservation();
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new UserInterface();
-            }
-        });
+        SwingUtilities.invokeLater(UserInterface::new);
     }
 }
