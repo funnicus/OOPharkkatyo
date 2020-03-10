@@ -5,6 +5,11 @@ import java.sql.*;
 public class Backend {
     private final String url = "jdbc:sqlite:database/harkkatyodb.db";
 
+    /**
+     * Muodostetaan yhteys tietokantaan.
+     * Palauttaa yhteyden Connection tyyppisenä objektina
+     * @return
+     */
     public Connection connect(){
         Connection conn = null;
         try {
@@ -71,6 +76,9 @@ public class Backend {
         }
     }
 
+    /**
+     * Tulostetaan kaikki asiakkaat
+     */
     public void selectCustomer(){
         String sql = "SELECT * FROM customer;";
 
@@ -92,6 +100,9 @@ public class Backend {
         }
     }
 
+    /**
+     * Tulostetaan kaikki varaukset
+     */
     public void selectReservation(){
         String sql = "SELECT * FROM reservations;";
 
