@@ -1,6 +1,7 @@
 package com.company;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -14,7 +15,8 @@ public class Customer {
         this.name = name;
         this.birthday = birthday;
         this.reservations = reservations;
-        id = UUID.nameUUIDFromBytes(name.getBytes()).toString();
+        String uidStr = name + birthday.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        id = UUID.nameUUIDFromBytes(uidStr.getBytes()).toString();
     }
 
     public String getName() {

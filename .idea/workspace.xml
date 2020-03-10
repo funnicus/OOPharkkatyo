@@ -4,6 +4,7 @@
     <list default="true" id="e88d83cc-8ebc-42a7-b638-29ed5ad6eea1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/harkkatyodb.db" beforeDir="false" afterPath="$PROJECT_DIR$/database/harkkatyodb.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -156,7 +157,13 @@
       <option name="presentableId" value="LOCAL−00008" />
       <updated>1583860501637</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL−00009" summary="varausten poisto toimii">
+      <created>1583863842058</created>
+      <option name="number" value="LOCAL−00009" />
+      <option name="presentableId" value="LOCAL−00009" />
+      <updated>1583863842058</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -185,7 +192,8 @@
     <MESSAGE value="varaukset ja customer databasessa" />
     <MESSAGE value="deleteReservation metodi luotu Backend luokkaan. Loppu jää sinulle matias :)" />
     <MESSAGE value="README.md tiedostoa muokattu nätimmäksi." />
-    <option name="LAST_COMMIT_MESSAGE" value="README.md tiedostoa muokattu nätimmäksi." />
+    <MESSAGE value="varausten poisto toimii" />
+    <option name="LAST_COMMIT_MESSAGE" value="varausten poisto toimii" />
   </component>
   <component name="WindowStateProjectService">
     <state x="615" y="0" key="CommitChangelistDialog2" timestamp="1583860500711">

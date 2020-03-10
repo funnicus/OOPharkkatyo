@@ -26,7 +26,7 @@ public class UserInterface extends JFrame {
         //RESERVATION VIEW WINDOW SETTINGS
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Varausjärjestelmä - Juho Ollila, Juhana Kuparinen & Matias Kumpulainen");
-        setSize(520, 300);
+        setSize(620, 300);
         setResizable(false);
 
         //CONTAINER
@@ -78,6 +78,17 @@ public class UserInterface extends JFrame {
         setLocationRelativeTo(null);
     }
 
+    /**
+     *
+     */
+    private void newReservation() {
+        reservationEditWindow.getFrame().setVisible(true);
+        reservationEditWindow.setReservationToEdit(null, currentCustomer);
+    }
+
+    /**
+     *
+     */
     private void updateReservations() {
         Reservation reservation = reservationEditWindow.getCurrentReservation();
 
@@ -124,10 +135,22 @@ public class UserInterface extends JFrame {
             JOptionPane.showMessageDialog(null, "Please type the start and end times in this format:\nDD-MM-YYYY HH:MM");
         }
     }
-    private void newReservation() {
-        reservationEditWindow.getFrame().setVisible(true);
-        reservationEditWindow.setReservationToEdit(null, currentCustomer);
+
+    /**
+     *
+     */
+    private void deleteReservation() {
+        int index = reservationListPane.getSelectedIndex();
+        Reservation reservation =  reservationList.elementAt(index);
+        if(index != -1) {
+            reservationList.remove(index);
+            backend.deleteReservation(reservation.getId());
+        }
     }
+
+    /**
+     *
+     */
     private void showReservations() {
         String name = userInfoWindow.getUserName();
         LocalDateTime birthday = userInfoWindow.getBirthDay();
@@ -149,6 +172,10 @@ public class UserInterface extends JFrame {
             setTitle("Reservations for " + name);
         }
     }
+
+    /**
+     *
+     */
     private void openEditWindow() {
         int index = reservationListPane.getSelectedIndex();
         if(index != -1) {
@@ -156,12 +183,6 @@ public class UserInterface extends JFrame {
             reservationEditWindow.setReservationToEdit(reservationList.getElementAt(index), currentCustomer);
         }
     }
-    private void deleteReservation() {
-        int index = reservationListPane.getSelectedIndex();
-        Reservation reservation =  reservationList.elementAt(index);
-        if(index != -1) {
-            reservationList.remove(index);
-            backend.deleteReservation(reservation.getId());
-        }
-    }
+
+
 }
