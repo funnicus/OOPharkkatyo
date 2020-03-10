@@ -15,7 +15,7 @@ public class ReservationEditWindow {
     private JFrame reservationEditWindow;
     private Reservation currentReservation;
     private JTextField placeField, addrField, startDateField, endDateField;
-    private JButton okButton, cancelButton;
+    private JButton okButton;
 
     //luodaan ikkuna konstruktorissa
     public ReservationEditWindow(boolean visibleOnStart) {
@@ -51,7 +51,7 @@ public class ReservationEditWindow {
         okButton = new JButton("Ok");
 
         //peruuta-nappi
-        cancelButton = new JButton("Cancel");
+        JButton cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(actionEvent -> resetWindow());
 
         //lisätään komponentit järjestyksessä ikkunaan/paneeliin

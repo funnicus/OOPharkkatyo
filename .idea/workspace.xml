@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e88d83cc-8ebc-42a7-b638-29ed5ad6eea1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/harkkatyodb.db" beforeDir="false" afterPath="$PROJECT_DIR$/database/harkkatyodb.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/UIWindows/ReservationEditWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/UIWindows/ReservationEditWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UIWindows/UserInfoWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/UIWindows/UserInfoWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +160,13 @@
       <option name="presentableId" value="LOCAL−00009" />
       <updated>1583863842058</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL−00010" summary="koodin kommentointi">
+      <created>1583871801792</created>
+      <option name="number" value="LOCAL−00010" />
+      <option name="presentableId" value="LOCAL−00010" />
+      <updated>1583871801792</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,7 +196,8 @@
     <MESSAGE value="deleteReservation metodi luotu Backend luokkaan. Loppu jää sinulle matias :)" />
     <MESSAGE value="README.md tiedostoa muokattu nätimmäksi." />
     <MESSAGE value="varausten poisto toimii" />
-    <option name="LAST_COMMIT_MESSAGE" value="varausten poisto toimii" />
+    <MESSAGE value="koodin kommentointi" />
+    <option name="LAST_COMMIT_MESSAGE" value="koodin kommentointi" />
   </component>
   <component name="WindowStateProjectService">
     <state x="615" y="0" key="CommitChangelistDialog2" timestamp="1583860500711">
