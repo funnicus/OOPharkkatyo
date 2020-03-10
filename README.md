@@ -19,5 +19,5 @@ Koska git ei jostain syystä suostu tallentamaan tänne kansiota **libs**, jonka
 ## Projektiin osallistuneet
 
 * Juhana Kuparinen - Tietokanta ja siihen liittyvät metodit
-* Juho Ollila - Interface luokat
+* Juho Ollila - Rajapinnat
 * Matias Kumpulainen - Käyttöliittymän visuaalinen rakenne
