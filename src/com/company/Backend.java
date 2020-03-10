@@ -77,6 +77,42 @@ public class Backend {
     }
 
     /**
+     * Päivitetään varaus tällä metodilla.
+     * @param id
+     * @param customer_id
+     * @param place
+     * @param address
+     * @param start_date
+     * @param end_date
+     */
+    public void updateReservation(int id,
+                                  String customer_id,
+                                  String place,
+                                  String address,
+                                  String start_date,
+                                  String end_date) {
+        String sql = "UPDATE reservations SET place = ? , "
+                + "address = ? , "
+                + "start_date = ? , "
+                + "end_date = ? , "
+                + "WHERE id = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setString(1, place);
+            pstmt.setString(2, address);
+            pstmt.setString(3, start_date);
+            pstmt.setString(4, end_date);
+            pstmt.setInt(5, id);
+            // update
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    /**
      * Tulostetaan kaikki asiakkaat
      */
     public void selectCustomer(){
