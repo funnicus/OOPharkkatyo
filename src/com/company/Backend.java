@@ -27,7 +27,7 @@ public class Backend {
     }
 
     /**
-     * Creating a customer
+     * Uuden asiakkaan luonti tietokantaan
      * @param id
      * @param name
      * @param date_of_birth
@@ -49,7 +49,7 @@ public class Backend {
     }
 
     /**
-     * Creating a new reservation
+     * Uuden varauksen luonti tietokantaan
      * @param id
      * @param customer_id
      * @param place
