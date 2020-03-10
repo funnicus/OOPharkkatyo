@@ -1,20 +1,16 @@
 package com.company;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 public interface CustomerInterface {
 
     String getName();
     void setName(String name);
 
-    Date getBirthDate();
-    void setBirthDate(Date birthDate);
+    LocalDateTime getBirthday();
+    void setBirthday(LocalDateTime birthDate);
 
-    ArrayList<Reservation> getAllReservations();
-    void setAllReservations(ArrayList<Reservation> reservations);
-
-    Reservation getReservation(int reservationNumber);
-    void setReservation(Reservation reservation);
-
+    ArrayList<Reservation> getReservations();
+    void setReservations(ArrayList<Reservation> reservations);
 }

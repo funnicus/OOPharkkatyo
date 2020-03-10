@@ -1,10 +1,11 @@
 package com.company;
 
-public class ReservationTarget {
+//Luokka sisältää yksittäisen varauskohteen tiedot
+// ja metodit joilla tietoja voidaan lukea
+public class ReservationTarget implements ReservationTargetInterface{
     private String name;
     private String address;
     private String type;
-
 
     public ReservationTarget(String name, String address, String type) {
         this.name = name;

@@ -5,7 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Customer {
+//Luokka pitää sisällään käyttäjän antamat tiedot ja näiden tietojen perusteella generoidun userID:n
+public class Customer implements CustomerInterface{
     private String name;
     private LocalDateTime birthday;
     private ArrayList<Reservation> reservations;

@@ -4,7 +4,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
-public class Reservation {
+//Luokka pitää sisällään yksittäisen varauksen kaikki tiedot sekä varauskohteen,
+// ja metodit joilla näitä tietoja voidaan lukea ja muokata
+public class Reservation implements ReservationInterface{
     private ReservationTarget reservationTarget;
     private Customer customer;
     private String id;
@@ -43,10 +45,9 @@ public class Reservation {
     public String getId() {
         return id;
     }
-    /*public void setReservationNumber(int reservationNumber) {
-        this.id = reservationNumber;
-    }*/
-
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public LocalDateTime getReservationStart() {
         return reservationStart;
@@ -63,6 +64,7 @@ public class Reservation {
         this.reservationEnd = reservationEnd;
     }
 
+    //Palauttaa varauksen tiedot siinä muodossa, jossa ne näkyvät varauksessa
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm");

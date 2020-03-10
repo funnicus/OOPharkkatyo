@@ -1,6 +1,6 @@
 package com.company;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public interface ReservationInterface {
 
@@ -10,13 +10,13 @@ public interface ReservationInterface {
     Customer getCustomer();
     void setCustomer(Customer customer);
 
-    int getReservationNumber();
-    void setReservationNumber(int number);
+    String getId();
+    void setId(String id);
 
-    Date getStartDate();
-    void setStartDate(Date startDate);
+    LocalDateTime getReservationStart();
+    void setReservationStart(LocalDateTime startDate);
 
-    Date getEndDate();
-    void setEndDate(Date endDate);
+    LocalDateTime getReservationEnd();
+    void setReservationEnd(LocalDateTime endDate);
 
 }
