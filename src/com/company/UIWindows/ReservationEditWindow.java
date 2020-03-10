@@ -75,8 +75,7 @@ public class ReservationEditWindow {
         //discard changes and hide window
         reservationEditWindow.setVisible(false);
         currentReservation = null;
-        addrField.setText("");
-        placeField.setText("");
+        resetForm();
     }
 
     /**

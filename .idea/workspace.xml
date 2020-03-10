@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e88d83cc-8ebc-42a7-b638-29ed5ad6eea1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/harkkatyodb.db" beforeDir="false" afterPath="$PROJECT_DIR$/database/harkkatyodb.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/UIWindows/ReservationEditWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/UIWindows/ReservationEditWindow.java" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +43,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/OOPharkkatyo" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -104,6 +107,7 @@
       <workItem from="1583697128279" duration="539000" />
       <workItem from="1583762972989" duration="12680000" />
       <workItem from="1583858771751" duration="1490000" />
+      <workItem from="1583872212554" duration="112000" />
     </task>
     <task id="LOCAL−00001" summary="Lisättiin rajapinnat:&#10;Asiakas&#10;Varaus&#10;Varauskohde">
       <created>1583157624796</created>
@@ -166,7 +170,13 @@
       <option name="presentableId" value="LOCAL−00010" />
       <updated>1583871801792</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL−00011" summary="koodin kommentointi">
+      <created>1583871815239</created>
+      <option name="number" value="LOCAL−00011" />
+      <option name="presentableId" value="LOCAL−00011" />
+      <updated>1583871815239</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
