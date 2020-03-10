@@ -8,6 +8,7 @@ import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 public class UserInterface extends JFrame {
     private Customer currentCustomer;
@@ -17,7 +18,7 @@ public class UserInterface extends JFrame {
 
     private ReservationEditWindow reservationEditWindow;
     private UserInfoWindow userInfoWindow;
-
+    Backend backend = new Backend();
     public UserInterface() {
         reservationEditWindow = new ReservationEditWindow(false);
         userInfoWindow = new UserInfoWindow(true);
@@ -35,12 +36,12 @@ public class UserInterface extends JFrame {
         //NEW RESERVATION BUTTON
         JButton newReservationButton = new JButton("New");
         newReservationButton.setSize(40, 20);
-        newReservationButton.addActionListener(actionEvent -> openEditWindow());
+        newReservationButton.addActionListener(actionEvent -> newReservation());
 
         //EDIT RESERVATION BUTTON
         JButton editReservationButton = new JButton("Edit");
         editReservationButton.setSize(40, 20);
-        editReservationButton.addActionListener(actionEvent -> newReservation());
+        editReservationButton.addActionListener(actionEvent -> openEditWindow());
 
         //DELETE RESERVATION BUTTON
         JButton deleteReservationButton = new JButton("Delete");
@@ -112,7 +113,7 @@ public class UserInterface extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    private void openEditWindow() {
+    private void newReservation() {
         reservationEditWindow.getFrame().setVisible(true);
         reservationEditWindow.setReservationToEdit(null, currentCustomer);
     }
@@ -124,13 +125,20 @@ public class UserInterface extends JFrame {
             JOptionPane.showMessageDialog(null, "Please type the date in this format:\nDD-MM-YYYY");
         } else {
             currentCustomer = new Customer(name, birthday, null);
+            String bday = birthday.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+
+            backend.createCustomer(currentCustomer.getId(), name, bday);
+
+            ArrayList<Reservation> list = backend.selectReservation(currentCustomer);
+            for(Reservation r : list) {
+                if(r != null) reservationList.addElement(r);
+            }
             userInfoWindow.getFrame().setVisible(false);
             setVisible(true);
             setTitle("Reservations for " + name);
-            //TODO: select kysely
         }
     }
-    private void newReservation() {
+    private void openEditWindow() {
         int index = reservationListPane.getSelectedIndex();
         if(index != -1) {
             reservationEditWindow.getFrame().setVisible(true);

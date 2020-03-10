@@ -1,6 +1,9 @@
 package com.company;
 import java.math.BigInteger;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class Backend {
     private final String url = "jdbc:sqlite:database/harkkatyodb.db";
@@ -139,8 +142,11 @@ public class Backend {
     /**
      * Tulostetaan kaikki varaukset
      */
-    public void selectReservation(){
-        String sql = "SELECT * FROM reservations;";
+    public ArrayList<Reservation> selectReservation(Customer customer){
+
+        String sql = "SELECT * FROM reservations WHERE customer_id=\"" + customer.getId() + "\";";
+
+        ArrayList<Reservation> list = new ArrayList<>();
 
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
@@ -148,17 +154,32 @@ public class Backend {
 
             // loop through the result set
             while (rs.next()) {
-                System.out.println("hmmm");
-                System.out.println(rs.getInt("id"));
-                System.out.println(rs.getString("customer_id"));
-                System.out.println(rs.getString("place"));
-                System.out.println(rs.getString("address"));
-                System.out.println(rs.getString("start_date"));
-                System.out.println(rs.getString("end_date"));
+
+                int id = rs.getInt("id");
+                String customer_id = rs.getString("customer_id");
+                String place = rs.getString("place");
+                String address = rs.getString("address");
+                String start_date = rs.getString("start_date");
+                String end_date = rs.getString("end_date");
+
+                LocalDateTime startTime = null, endTime = null;
+                try {
+
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+                    startTime = LocalDateTime.parse(start_date, formatter);
+                    endTime = LocalDateTime.parse(end_date, formatter);
+                } catch (Exception e) {
+
+                }
+
+                ReservationTarget rt = new ReservationTarget(place, address, "reservationTarget");
+                Reservation r = new Reservation(rt, customer, id, startTime, endTime);
+                list.add(r);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return list;
     }
 
     /**

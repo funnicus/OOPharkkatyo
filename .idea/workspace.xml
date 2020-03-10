@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e88d83cc-8ebc-42a7-b638-29ed5ad6eea1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/postgresql_42_2_10.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UIWindows/ReservationEditWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/UIWindows/ReservationEditWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UIWindows/UserInfoWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/UIWindows/UserInfoWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_harkkatyo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_harkkatyo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/harkkatyodb.db" beforeDir="false" afterPath="$PROJECT_DIR$/database/harkkatyodb.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Backend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Backend.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +43,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Java/PostgreSQL_demo/src/com/postgresqltutorial/App.java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -55,6 +57,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\kumpu\Documents\Ohjelmointi\OOPharkkatyo\libs" />
       <recent name="C:\Users\juhku\Programs\OOP\OOPharkkatyo\libs" />
     </key>
   </component>
@@ -164,53 +167,29 @@
     <option name="LAST_COMMIT_MESSAGE" value="Lisätty javadoc Backend -tiedostoon." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="654" y="0" key="CommitChangelistDialog2" timestamp="1583845257105">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="654" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583845257105" />
-    <state x="473" y="155" key="FileChooserDialogImpl" timestamp="1583779266357">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="473" y="155" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1583779266357" />
-    <state width="476" height="152" key="GridCell.Tab.0.bottom" timestamp="1583843897966">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="476" height="152" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583843897966" />
-    <state width="476" height="152" key="GridCell.Tab.0.center" timestamp="1583843897965">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="476" height="152" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1583843897965" />
-    <state width="476" height="152" key="GridCell.Tab.0.left" timestamp="1583843897965">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="476" height="152" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1583843897965" />
-    <state width="476" height="152" key="GridCell.Tab.0.right" timestamp="1583843897966">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="476" height="152" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583843897966" />
-    <state x="753" y="129" key="MultipleFileMergeDialog" timestamp="1583766734236">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="753" y="129" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1583766734236" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1583761762666">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1583761762666" />
-    <state x="97" y="78" key="Vcs.Push.Dialog.v2" timestamp="1583845272077">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="97" y="78" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1583845272077" />
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1583762971620">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1583762971620" />
-    <state x="850" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1583843498964">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="850" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1583843498964" />
-    <state x="756" y="211" key="git4idea.merge.GitPullDialog" timestamp="1583843566196">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="756" y="211" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1583843566196" />
+    <state x="654" y="0" key="CommitChangelistDialog2" />
+    <state x="654" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" />
+    <state x="473" y="155" key="FileChooserDialogImpl" />
+    <state x="473" y="155" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" />
+    <state width="476" height="152" key="GridCell.Tab.0.bottom" />
+    <state width="476" height="152" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" />
+    <state width="476" height="152" key="GridCell.Tab.0.center" />
+    <state width="476" height="152" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" />
+    <state width="476" height="152" key="GridCell.Tab.0.left" />
+    <state width="476" height="152" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" />
+    <state width="476" height="152" key="GridCell.Tab.0.right" />
+    <state width="476" height="152" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" />
+    <state x="753" y="129" key="MultipleFileMergeDialog" />
+    <state x="753" y="129" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" />
+    <state x="249" y="0" key="SettingsEditor" />
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" />
+    <state x="97" y="78" key="Vcs.Push.Dialog.v2" />
+    <state x="97" y="78" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" />
+    <state x="850" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" />
+    <state x="850" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" />
+    <state x="756" y="211" key="git4idea.merge.GitPullDialog" />
+    <state x="756" y="211" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" />
   </component>
 </project>
