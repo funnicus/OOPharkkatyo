@@ -11,75 +11,82 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class UserInterface extends JFrame {
+    //viittaus asiakkaaseen jolle varaus tehdään
     private Customer currentCustomer;
 
+    //komponentit joista tarvitaan viittaus
     private JList<Reservation> reservationListPane;
     private DefaultListModel<Reservation> reservationList;
-
     private ReservationEditWindow reservationEditWindow;
     private UserInfoWindow userInfoWindow;
-    Backend backend = new Backend();
+
+    //tietokantaan yhdistävä luokka
+    private Backend backend = new Backend();
+
+    //luodaan käyttöliittymä konstruktorissa
     public UserInterface() {
+
+        //Luodaan uudet muokkaus- ja käyttäjätiedot -ikkunat
         reservationEditWindow = new ReservationEditWindow(false);
         userInfoWindow = new UserInfoWindow(true);
 
-        //RESERVATION VIEW WINDOW SETTINGS
+        //Varausnäkymän ikkunan asetukset
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Varausjärjestelmä - Juho Ollila, Juhana Kuparinen & Matias Kumpulainen");
+        setTitle("Varausjärjestelmä");
         setSize(620, 300);
         setResizable(false);
 
-        //CONTAINER
+        //Paneeli, johon komponentit lisätään
         Container cp = getContentPane();
         JPanel mainPanel = new JPanel(new FlowLayout());
 
-        //NEW RESERVATION BUTTON
+        //Uusi varaus -nappi
         JButton newReservationButton = new JButton("New");
         newReservationButton.setSize(40, 20);
         newReservationButton.addActionListener(actionEvent -> newReservation());
 
-        //EDIT RESERVATION BUTTON
+        //Muokkaa varausta -nappi
         JButton editReservationButton = new JButton("Edit");
         editReservationButton.setSize(40, 20);
         editReservationButton.addActionListener(actionEvent -> openEditWindow());
 
-        //DELETE RESERVATION BUTTON
+        //Poista varaus -nappi
         JButton deleteReservationButton = new JButton("Delete");
         deleteReservationButton.setSize(40, 20);
         deleteReservationButton.addActionListener(actionEvent -> deleteReservation());
 
-        //RESERVATION LIST MODEL
+        //ArrayList, joka sisältää kaikki varaukset
         reservationList = new DefaultListModel<>();
-        //RESERVATION LIST PANE
+        //Lista-komponentti, joka näyttää kaikki varaukset listana ruudulla
         reservationListPane = new JList<>(reservationList);
         reservationListPane.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         reservationListPane.setPreferredSize(new Dimension(600, 200));
 
-        //SCROLL PANE
+        //Vierityspaneeli johon lista-komponentti sisällytetään
         JScrollPane scrollPane = new JScrollPane(reservationListPane);
         scrollPane.setPreferredSize(new Dimension(620, 220));
 
-        //USER INFO SUBMIT
+        //Käyttäjätiedot-ikkunan ok-nappi
         JButton userInfoSubmit = userInfoWindow.getUserInfoButton();
         userInfoSubmit.addActionListener(actionEvent -> showReservations());
 
-        //RESERVATION EDIT SUBMIT
+        //Varausikkunan ok-nappi
         JButton editOkButton = reservationEditWindow.getOkButton();
-        //EDIT SUBMISSION ACTION
         editOkButton.addActionListener(e -> updateReservations());
 
-        //ADD COMPONENTS
+        //Lisätään komponentit järjestyksessä ikkunaan/paneeliin
         cp.add(mainPanel);
         mainPanel.add(newReservationButton);
         mainPanel.add(editReservationButton);
         mainPanel.add(deleteReservationButton);
         mainPanel.add(scrollPane);
         pack();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null); //Keskittää ikkunan ruudulle
     }
 
     /**
-     *
+     * Avaa muokkausikkunan ja asettaa muokattavan varauksen tyhjäksi,
+     * jolloin luodaan uusi varaus
      */
     private void newReservation() {
         reservationEditWindow.getFrame().setVisible(true);
@@ -87,7 +94,9 @@ public class UserInterface extends JFrame {
     }
 
     /**
-     *
+     * Ottaa muokkausikkunan tiedot, ja asettaa varauksen tiedot niiden perusteella.
+     * Mikäli muokattava varaus on uusi, luodaan uusi varaus ja lisätään se ikkunaan ja tietokantaan.
+     * Mikäli muokattava varaus on olemassaoleva, muokataan kyseisen varauksen tiedot ikkunassa ja tietokannassa.
      */
     private void updateReservations() {
         Reservation reservation = reservationEditWindow.getCurrentReservation();
@@ -117,19 +126,15 @@ public class UserInterface extends JFrame {
             if(index == -1) {
                 //NEW RESERVATION
                 reservationList.addElement(reservation);
-
                 backend.createReservation(reservation.getId(), currentCustomer.getId(), place, address, startTime, endTime);
             } else {
                 //EXISTING RESERVATIONS
                 reservationList.setElementAt(reservation, index);
-
                 backend.updateReservation(reservation.getId(), currentCustomer.getId(), place, address, startTime, endTime);
             }
 
             reservationEditWindow.getFrame().setVisible(false);
             reservationEditWindow.resetForm();
-            //TODO: update kysely
-
         } catch(DateTimeParseException timeException) {
             System.out.println(timeException);
             JOptionPane.showMessageDialog(null, "Please type the start and end times in this format:\nDD-MM-YYYY HH:MM");
@@ -137,7 +142,7 @@ public class UserInterface extends JFrame {
     }
 
     /**
-     *
+     * Poistaa valitun varauksen sekä ikkunasta että tietokannasta
      */
     private void deleteReservation() {
         int index = reservationListPane.getSelectedIndex();
@@ -149,7 +154,8 @@ public class UserInterface extends JFrame {
     }
 
     /**
-     *
+     * Hakee tietokannasta käyttäjän id:llä varustetut varaukset ja näyttää ne ikkunassa.
+     * Sulkee käyttäjätiedot-ikkunan ja avaa varausnäkymä-ikkunan.
      */
     private void showReservations() {
         String name = userInfoWindow.getUserName();
@@ -174,7 +180,7 @@ public class UserInterface extends JFrame {
     }
 
     /**
-     *
+     * Avaa varauksenmuokkaus-ikkunan, ja asettaa valitun varauksen muokattavaksi varaukseksi
      */
     private void openEditWindow() {
         int index = reservationListPane.getSelectedIndex();
