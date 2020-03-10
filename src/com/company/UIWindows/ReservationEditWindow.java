@@ -81,7 +81,7 @@ public class ReservationEditWindow {
         if(reservation == null) {
             //CREATE NEW RESERVATION TARGET
             ReservationTarget newReservationTarget = new ReservationTarget("", "", "");
-            currentReservation = new Reservation(newReservationTarget, customer, (int) (Math.random()*1000000), LocalDateTime.now(), LocalDateTime.now());
+            currentReservation = new Reservation(newReservationTarget, customer, placeField.getText(), LocalDateTime.now(), LocalDateTime.now());
 
             //SET DEFAULT VALUES
             placeField.setText("");

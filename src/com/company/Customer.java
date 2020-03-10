@@ -14,7 +14,7 @@ public class Customer {
         this.name = name;
         this.birthday = birthday;
         this.reservations = reservations;
-        id = UUID.randomUUID().toString();
+        id = UUID.nameUUIDFromBytes(name.getBytes()).toString();
     }
 
     public String getName() {

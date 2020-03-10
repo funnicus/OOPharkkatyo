@@ -17,7 +17,7 @@ public class UserInfoWindow {
     public UserInfoWindow(boolean visibleOnStart) {
         //WINDOW
         userInfoWindow = new JFrame("user info");
-        userInfoWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        userInfoWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         userInfoWindow.setSize(400, 150);
         userInfoWindow.setLocationRelativeTo(null);
         if(visibleOnStart) userInfoWindow.setVisible(true);

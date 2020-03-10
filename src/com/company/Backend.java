@@ -57,7 +57,7 @@ public class Backend {
      * @param start_date
      * @param end_date
      */
-    public void createReservation(int id,
+    public void createReservation(String id,
                                   String customer_id,
                                   String place,
                                   String address,
@@ -67,7 +67,7 @@ public class Backend {
 
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, id);
+            pstmt.setString(1, "\"" + id + "\"");
             pstmt.setString(2, customer_id);
             pstmt.setString(3, place);
             pstmt.setString(4, address);
@@ -155,7 +155,7 @@ public class Backend {
             // loop through the result set
             while (rs.next()) {
 
-                int id = rs.getInt("id");
+                String id = rs.getString("id");
                 String customer_id = rs.getString("customer_id");
                 String place = rs.getString("place");
                 String address = rs.getString("address");

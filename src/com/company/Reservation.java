@@ -2,23 +2,22 @@ package com.company;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 public class Reservation {
     private ReservationTarget reservationTarget;
     private Customer customer;
-    private int reservationNumber;
+    private String id;
     private LocalDateTime reservationStart;
     private LocalDateTime reservationEnd;
 
-
-    public Reservation(ReservationTarget reservationTarget, Customer customer, int reservationNumber, LocalDateTime reservationStart, LocalDateTime reservationEnd) {
+    public Reservation(ReservationTarget reservationTarget, Customer customer, String reservationNumber, LocalDateTime reservationStart, LocalDateTime reservationEnd) {
         this.reservationTarget = reservationTarget;
         this.customer = customer;
-        this.reservationNumber = reservationNumber;
+        this.id = UUID.randomUUID().toString();
         this.reservationStart = reservationStart;
         this.reservationEnd = reservationEnd;
     }
-
 
     public ReservationTarget getReservationTarget() {
         return reservationTarget;
@@ -36,12 +35,12 @@ public class Reservation {
     }
 
 
-    public int getReservationNumber() {
-        return reservationNumber;
+    public String getId() {
+        return id;
     }
-    public void setReservationNumber(int reservationNumber) {
-        this.reservationNumber = reservationNumber;
-    }
+    /*public void setReservationNumber(int reservationNumber) {
+        this.id = reservationNumber;
+    }*/
 
 
     public LocalDateTime getReservationStart() {

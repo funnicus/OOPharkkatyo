@@ -86,9 +86,17 @@ public class UserInterface extends JFrame {
 
                 int index = reservationList.indexOf(reservation);
 
-                //NEW RESERVATION
+
                 if(index == -1) {
+                    //NEW RESERVATION
                     reservationList.addElement(reservation);
+                    //
+                    String place = reservation.getReservationTarget().getName();
+                    String address = reservation.getReservationTarget().getAddress();
+                    String startTime = parsedStartTime.format(formatter);
+                    String endTime = parsedEndTime.format(formatter);
+
+                    backend.createReservation(reservation.getId(), currentCustomer.getId(), place, address, startTime, endTime);
                 } else {
                     reservationList.setElementAt(reservation, index);
                 }
