@@ -11,10 +11,15 @@ public class Reservation {
     private LocalDateTime reservationStart;
     private LocalDateTime reservationEnd;
 
-    public Reservation(ReservationTarget reservationTarget, Customer customer, String reservationNumber, LocalDateTime reservationStart, LocalDateTime reservationEnd) {
+    public Reservation(String id,ReservationTarget reservationTarget, Customer customer, String reservationNumber, LocalDateTime reservationStart, LocalDateTime reservationEnd) {
         this.reservationTarget = reservationTarget;
         this.customer = customer;
-        this.id = UUID.randomUUID().toString();
+        if(id == null) {
+            this.id = UUID.randomUUID().toString();
+        } else {
+            this.id = id;
+        }
+
         this.reservationStart = reservationStart;
         this.reservationEnd = reservationEnd;
     }

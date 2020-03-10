@@ -67,7 +67,7 @@ public class Backend {
 
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, "\"" + id + "\"");
+            pstmt.setString(1, id);
             pstmt.setString(2, customer_id);
             pstmt.setString(3, place);
             pstmt.setString(4, address);
@@ -88,7 +88,7 @@ public class Backend {
      * @param start_date
      * @param end_date
      */
-    public void updateReservation(int id,
+    public void updateReservation(String id,
                                   String customer_id,
                                   String place,
                                   String address,
@@ -97,8 +97,8 @@ public class Backend {
         String sql = "UPDATE reservations SET place = ? , "
                 + "address = ? , "
                 + "start_date = ? , "
-                + "end_date = ? , "
-                + "WHERE id = ?";
+                + "end_date = ? "
+                + "WHERE id = ?;";
 
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -108,10 +108,11 @@ public class Backend {
             pstmt.setString(2, address);
             pstmt.setString(3, start_date);
             pstmt.setString(4, end_date);
-            pstmt.setInt(5, id);
+            pstmt.setString(5, id);
             // update
             pstmt.executeUpdate();
         } catch (SQLException e) {
+
             System.out.println(e.getMessage());
         }
     }
@@ -173,7 +174,7 @@ public class Backend {
                 }
 
                 ReservationTarget rt = new ReservationTarget(place, address, "reservationTarget");
-                Reservation r = new Reservation(rt, customer, id, startTime, endTime);
+                Reservation r = new Reservation(id, rt, customer, id, startTime, endTime);
                 list.add(r);
             }
         } catch (SQLException e) {
