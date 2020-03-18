@@ -1,6 +1,6 @@
 # OOP harjoitustyö
 
-OOP harkkatyömme koodi. Harjoitustyömme aihe oli varausjärjestelmä. Järjestelmään kuluu visuaalinen käyttöliittymä sekä yksinkertainen tietokanta, joka on toteutettu SQLite:llä.
+OOP harkkatyömme koodi. Harjoitustyömme aihe oli varausjärjestelmä. Järjestelmään kuluu Java Swingillä tehty visuaalinen käyttöliittymä sekä yksinkertainen tietokanta, joka on toteutettu SQLite:llä.
 
 ## Tärkeät tiedostot
 
